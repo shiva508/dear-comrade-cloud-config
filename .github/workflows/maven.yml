@@ -9,18 +9,20 @@ on:
 
 jobs:
   build:
-    name: stage-build-test
+    name: stage-build-test-ci
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    
+    - name: build-with-maven
       run: mvn -B package --file pom.xml
     
     - name: login-to-docker-hub
@@ -29,7 +31,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
     
-    - name: Build and push
+    - name: docker-image-build-push
       uses: docker/build-push-action@v5
       with:
         context: .

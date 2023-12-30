@@ -46,14 +46,19 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: kubectl - Google Cloud GKE cluster.
-      uses: ameydev/gke-kubectl-action@master
-      env:
-        PROJECT_ID: ${{ secrets.PROJECT_ID }}
-        APPLICATION_CREDENTIALS: ${{ secrets.GKE_SA_KEY }}
-        CLUSTER_NAME: ${{ secrets.GKE_CLUSTER }}
-        ZONE_NAME: ${{ secrets.GKE_ZONE }}
-      with:
-        args: apply -f ci-cd/      
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          project_id: ${{ env.PROJECT_ID }}
+          export_default_credentials: true
+    # - uses: actions/checkout@master
+    # - name: kubectl - Google Cloud GKE cluster.
+    #   uses: ameydev/gke-kubectl-action@master
+    #   env:
+    #     PROJECT_ID: ${{ secrets.PROJECT_ID }}
+    #     APPLICATION_CREDENTIALS: ${{ secrets.GKE_SA_KEY }}
+    #     CLUSTER_NAME: ${{ secrets.GKE_CLUSTER }}
+    #     ZONE_NAME: ${{ secrets.GKE_ZONE }}
+    #   with:
+    #     args: apply -f ci-cd/      
 

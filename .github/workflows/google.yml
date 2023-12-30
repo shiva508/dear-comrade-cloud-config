@@ -60,9 +60,20 @@ jobs:
       - name: Get GKE Credentials
         run: |-
           gcloud container clusters get-credentials dear-comrade-cloud --region us-central1 --project turing-guard-409403
-      - name: 
+      - name: test-run-commonand
         run: |-
           ls
+      - name: create-deployment
+        run: |-
+          kubectl create deployment dear-comrade-cloud-config --image=dasari508201/dear-comrade-cloud-config:0.0.8
+      - name: create-servie
+        run: |-
+          kubectl expose deployment dear-comrade-cloud-config --type=LoadBalancer --port=8888
+      - name: logging
+        run: |-
+          kubectl get pods -o wide
+
+
     # - uses: actions/checkout@v3
     # - name: kubectl - Google Cloud GKE cluster.
     #   uses: ameydev/gke-kubectl-action@master

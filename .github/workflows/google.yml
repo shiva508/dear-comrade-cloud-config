@@ -60,7 +60,9 @@ jobs:
       - name: Get GKE Credentials
         run: |-
           gcloud container clusters get-credentials dear-comrade-cloud --region us-central1 --project turing-guard-409403
-
+      - name: 
+        run: |-
+          kubectl apply -f ci-cd/
     # - uses: actions/checkout@master
     # - name: kubectl - Google Cloud GKE cluster.
     #   uses: ameydev/gke-kubectl-action@master

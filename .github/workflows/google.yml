@@ -51,7 +51,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          project_id: ${{ env.PROJECT_ID }}
+          project_id: ${{ secrets.PROJECT_ID }}
           export_default_credentials: true
     # - uses: actions/checkout@master
     # - name: kubectl - Google Cloud GKE cluster.

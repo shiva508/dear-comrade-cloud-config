@@ -64,7 +64,7 @@ jobs:
           gcloud --quiet auth configure-docker
       - name: Get GKE Credentials
         run: |-
-          gcloud container clusters get-credentials dear-comrade-cloud --region us-central1 --project turing-guard-409403
+          ./kustomize gcloud container clusters get-credentials dear-comrade-cloud --region asia-east1 --project turing-guard-409403
       - name: test-run-commonand
         run: |-
           ls

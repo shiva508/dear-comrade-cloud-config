@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 jobs:
-- job: Job-1
+- job: Job1
   steps:
   - script: echo Hello, world! Jpb-1
     displayName: 'Run: Job-1'
@@ -19,7 +19,7 @@ jobs:
       echo Add other tasks to build, test, and deploy your project.
       echo See https://aka.ms/yaml
     displayName: 'Run a multi-line script'
-- job: Job-2
+- job: Job2
   steps:
   - script: echo Hello, world! Job-2
     displayName: 'Run: Job-2'

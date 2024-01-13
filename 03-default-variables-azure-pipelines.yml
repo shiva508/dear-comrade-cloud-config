@@ -18,5 +18,9 @@ stages:
       - bash: echo $(System.DefaultWorkingDirectory)
       - bash: echo $(Build.ArtifactStagingDirectory)
       - bash: ls -R $(System.DefaultWorkingDirectory)
+      - bash: java -version
+      - bash: node --version
+      - bash: python -version
+      - bash: mvn -version
 
 

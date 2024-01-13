@@ -12,7 +12,15 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
+- stage: BuildbuildJar
+  displayName: Build buildJar
+  jobs:
+    - job: mavenBuild
+      displayName: mavenBuild
+      steps:
+        - script: mvn clean install
 - stage: Build
+  dependsOn: BuildbuildJar
   displayName: Build image
   jobs:
   - job: Build

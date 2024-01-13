@@ -1,0 +1,28 @@
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: build
+  jobs:
+  - job: build-jar
+    steps:
+      - bash: echo mvn clean install package
+- stage: docker-image
+  jobs:
+  - job: build-docker-image
+    steps:
+      - bash: echo docker build -t dasari508201/dear-comrade-cloud-config:0.0.1 .
+  - job: push-docker-image
+    steps:
+      - bash: echo docker push dasari508201/dear-comrade-cloud-config:0.0.1
+- stage: deploy-dev
+  jobs:
+  - job: gcp-deployment
+    steps:
+      - bash: kubectl  
+
+

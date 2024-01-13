@@ -11,7 +11,7 @@ stages:
   - job: buildJar
     steps:
       - bash: echo mvn clean install package
-- stage: dockerImage
+- stage: containerization
   jobs:
   - job: buildDockerImage
     steps:
@@ -23,6 +23,6 @@ stages:
   jobs:
   - job: gcpDeployment
     steps:
-      - bash: kubectl  
+      - bash: echo kubectl  
 
 

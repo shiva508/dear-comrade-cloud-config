@@ -1,0 +1,22 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: build
+  jobs:
+  - job: buildJar
+    steps:
+      - bash: echo mvn clean install package $(SERVER_PORT)
+      - bash: echo $(Build.BuildNumber)
+      - bash: echo $(Build.BuildId)
+      - bash: echo $(Build.SourceBranchName)
+      - bash: echo $(Build.SourcesDirectory)
+      - bash: echo $(Build.SourcesDirectory)
+      - bash: echo $(System.DefaultWorkingDirectory)
+      - bash: echo $(Build.ArtifactStagingDirectory)
+      - bash: ls -R $(System.DefaultWorkingDirectory)
+
+

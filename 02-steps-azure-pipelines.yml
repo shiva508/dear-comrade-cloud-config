@@ -11,18 +11,48 @@ stages:
   - job: buildJar
     steps:
       - bash: echo mvn clean install package
+
 - stage: containerization
+  dependsOn: build
   jobs:
   - job: buildDockerImage
     steps:
       - bash: echo docker build -t dasari508201/dear-comrade-cloud-config:0.0.1 .
   - job: pushDockerImage
+    dependsOn: buildDockerImage
     steps:
       - bash: echo docker push dasari508201/dear-comrade-cloud-config:0.0.1
+
 - stage: deployDev
+  dependsOn: containerization
   jobs:
-  - job: gcpDeployment
+  - job: createDeployment
     steps:
-      - bash: echo kubectl  
+      - bash: echo create deployment  
+  - job: createService
+    steps:
+      - bash: echo create service 
+        
+- stage: deployQa
+  dependsOn: containerization
+  jobs:
+  - job: createDeployment
+    steps:
+      - bash: echo create deployment  
+  - job: createService
+    steps:
+      - bash: echo create service
+
+- stage: deployProd
+  dependsOn:
+    - deployDev
+    - deployQa
+  jobs:
+  - job: createDeployment
+    steps:
+      - bash: echo create deployment  
+  - job: createService
+    steps:
+      - bash: echo create service
 
 

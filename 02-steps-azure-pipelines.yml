@@ -8,20 +8,20 @@ pool:
 stages:
 - stage: build
   jobs:
-  - job: build-jar
+  - job: buildJar
     steps:
       - bash: echo mvn clean install package
-- stage: docker-image
+- stage: dockerImage
   jobs:
-  - job: build-docker-image
+  - job: buildDockerImage
     steps:
       - bash: echo docker build -t dasari508201/dear-comrade-cloud-config:0.0.1 .
-  - job: push-docker-image
+  - job: pushDockerImage
     steps:
       - bash: echo docker push dasari508201/dear-comrade-cloud-config:0.0.1
-- stage: deploy-dev
+- stage: deployDev
   jobs:
-  - job: gcp-deployment
+  - job: gcpDeployment
     steps:
       - bash: kubectl  
 

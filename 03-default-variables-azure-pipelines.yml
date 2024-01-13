@@ -7,7 +7,7 @@ pool:
 stages:
 - stage: build
   jobs:
-  - job: buildJar
+  - job: defaultVariableInfo
     steps:
       - bash: echo mvn clean install package $(SERVER_PORT)
       - bash: echo $(Build.BuildNumber)

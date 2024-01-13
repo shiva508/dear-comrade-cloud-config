@@ -31,7 +31,7 @@ stages:
       - bash: echo create deployment  
   - job: createService
     steps:
-      - bash: echo create service 
+      - bash: echo create service application running on port= $(SERVER_PORT)
         
 - stage: deployQa
   dependsOn: containerization
@@ -41,7 +41,7 @@ stages:
       - bash: echo create deployment  
   - job: createService
     steps:
-      - bash: echo create service
+      - bash: echo create service application running on port= $(SERVER_PORT)
 
 - stage: deployProd
   dependsOn:
@@ -53,6 +53,6 @@ stages:
       - bash: echo create deployment  
   - job: createService
     steps:
-      - bash: echo create service
+      - bash: echo create service, application running on port= $(SERVER_PORT)
 
 
